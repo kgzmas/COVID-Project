@@ -31,6 +31,6 @@ order by infection_rate desc
 -- Highest death count, death rate
 select location, max(total_deaths) as highestdeaths, population, max((cast(total_deaths as float)) / cast(population as float))*100 as percentageofdeath 
 from PortfolioProject.dbo.coviddeaths
-where continent is not null
+where continent <> '' --This is super important as I just found out the dataset has rows with Continent or even World data.
 group by location, population
 order by highestdeaths desc
